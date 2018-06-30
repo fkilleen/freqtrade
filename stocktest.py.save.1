@@ -1,0 +1,20 @@
+import json
+from alpha_vantage.timeseries import TimeSeries
+from pprint import pprint
+from time import gmtime, strftime
+
+APIKEY = "LITMQUQH9NM496K3"
+SYMBOL = "V"
+
+ts = TimeSeries(key=APIKEY )
+data, meta_data = ts.get_daily(symbol=SYMBOL, outputsize='compact')
+
+value = "u'" +  strftime("%Y-%m-%d %H:%M:%S", gmtime()) + "'"
+
+#print data
+
+output_file = open(SYMBOL + ".json", "w")
+output_file.write(str(data))
+output_file.close()
+
+print "done"
